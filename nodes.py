@@ -6,7 +6,7 @@ import comfy.sample
 import comfy.samplers
 import comfy.utils
 import latent_preview
-from comfy.ldm.modules.attention import optimized_attention, _ATTN_PRECISION
+from comfy.ldm.modules.attention import optimized_attention
 import functools
 import re
 import nodes
@@ -14,6 +14,8 @@ from comfy.ldm.modules.attention import SpatialTransformer
 import folder_paths
 import os
 import shutil
+
+_ATTN_PRECISION = os.environ.get("ATTN_PRECISION", "fp32")
 
 def get_tokens_first_match(clip, prompt, search_phrase):
     if len(search_phrase) == 0:
